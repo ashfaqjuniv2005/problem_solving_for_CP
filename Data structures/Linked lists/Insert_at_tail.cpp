@@ -31,10 +31,15 @@ void printList(Node *head)
     cout << endl;
 }
 
-Node *instert_front(Node *head, int val)
+Node* instert_back(Node *head, int val)
 {
-    Node *temp = new Node(val, head);               //creates a new temp Node
-    return temp;                                    //Returns the address of temp to assign it as new head (tail is fixed but head is updating here)
+    Node* temp = head;
+    while(temp->next != nullptr){         //Checks if the next element is NULL
+        temp = temp->next;                //Updates temp to next link in each iteration
+    }
+    Node* newNode = new Node(val);       //Creates a newNode
+    temp->next = newNode;                //Links last temp to newNode
+    return head;                         //Returns the updated head
 }
 
 int main()
@@ -44,13 +49,13 @@ int main()
     cin >> n;
     cout << "Enter " << n << " elements: ";
     cin >> val;
-    Node *head = new Node(val);                       //Add first value manually
-    for (int i = 2; i <= n; i++)                      // The rest values are to be added and linked in loop
+    Node *head = new Node(val);
+    for (int i = 2; i <= n; i++)
     {
         cin >> val;
-        head = instert_front(head, val);
+        head = instert_back(head, val);
     }
-    cout << "List after using insert front (Stack-like) :" << endl;
+    cout << "List after using insert back (Queue-like) :" << endl;   // similar to push into queue
     printList(head);
 
     return 0;
