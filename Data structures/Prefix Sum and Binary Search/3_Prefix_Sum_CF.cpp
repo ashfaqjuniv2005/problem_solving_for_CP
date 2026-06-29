@@ -18,7 +18,9 @@ cout.tie(0);
     vector<int>pre(n);
 
     pre[0]=a[0];
-
+       
+     //  You can ignore till 31 no. Line
+       
     for(int i=1;i<n;i++){
         pre[i]=pre[i-1]+a[i];
     }
